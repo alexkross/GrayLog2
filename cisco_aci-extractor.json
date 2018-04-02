@@ -1,0 +1,27 @@
+{ "extractors":
+ [
+  {
+    "title":"Timestamp corrected",
+    "type":"REGEX",
+    "cursor_strategy":"CUT",
+    "target_field":"timestamp",
+    "source_field":"full_message",
+    "configuration":{"regex_value":"^\\<\\d+\\>(\\p{Upper}\\p{Lower}{2,}\\s.+.\\d{3})\\s.*$"},
+    "converters":[],
+    "condition_type":"REGEX",
+    "condition_value":"^\\<\\d+\\>",
+    "order":0
+  },
+  {
+    "title":"Source instead subsec",
+    "type":"SPLIT_AND_INDEX","cursor_strategy":"CUT",
+    "target_field":"source",
+    "source_field":"full_message",
+    "configuration":{"index":2,"split_by":" "},
+    "converters":[],
+    "condition_type":"REGEX",
+    "condition_value":"^\\<\\d+\\>","order":0
+  }
+ ],
+ "version": "0.1" 
+}
